@@ -1,0 +1,25 @@
+###
+POST  http://localhost:7000/service-user/rule/ HTTP/1.1
+content-type: application/json
+
+{
+    "description":"ALTERAR"
+}
+
+###
+GET  http://localhost:7000/service-user/rule/ HTTP/1.1
+
+###
+GET  http://localhost:7000/service-user/rule/2 HTTP/1.1
+
+###
+PATCH  http://localhost:7000/service-user/rule/4 HTTP/1.1
+content-type: application/json
+
+{
+    "description": "alterar"
+    
+}
+
+###
+DELETE  http://localhost:7000/service-user/rule/2 HTTP/1.1

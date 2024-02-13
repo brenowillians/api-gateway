@@ -1,0 +1,27 @@
+
+###
+POST  http://localhost:7000/service-user/group/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "administrativo"
+    
+}
+
+###
+GET  http://localhost:7000/service-user/group/ HTTP/1.1
+
+###
+GET  http://localhost:7000/service-user/group/6 HTTP/1.1
+
+###
+PATCH  http://localhost:7000/service-user/group/6 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "administrativo alt"
+    
+}
+
+###
+DELETE  http://localhost:7000/service-user/group/4 HTTP/1.1

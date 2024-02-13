@@ -1,0 +1,28 @@
+
+###
+POST  http://localhost:7000/service-user/address-type/ HTTP/1.1
+content-type: application/json
+
+{
+    "description":"trabalho"
+}
+
+
+###
+GET  http://localhost:7000/service-user/address-type/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjo1LCJpYXQiOjE3MDc0MzU1NDQsImV4cCI6MTcwNzQzOTE0NH0.fnVibOh00DL8F2Y7w-sO_OjkP13nC0BSSdnfL9tsZW4
+
+###
+GET  http://localhost:7000/service-user/address-type/2 HTTP/1.1
+
+###
+PATCH  http://localhost:7000/service-user/address-type/2 HTTP/1.1
+content-type: application/json
+
+{
+    "description": "trabalho alterado"
+    
+}
+
+###
+DELETE  http://localhost:7000/service-user/address-type/2 HTTP/1.1
