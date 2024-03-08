@@ -1,9 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateGroupRuleDto } from 'src/dto/service-user/create-group-rule.dto';
 import { UpdateGroupRuleDto } from 'src/dto/service-user/update-group-rule.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultGroupRuleDto } from 'src/dto/service-user/result-group-rule.dto';
+import { ListResultGroupRuleDto } from 'src/dto/service-user/list-result-group-rule-dto';
+import { ListCriteriaGroupRuleDto } from 'src/dto/service-user/list-criteria-group-rule.dto';
 
 
 @ApiTags('GroupRule') // Titulo Da Cadeia de Metodos
@@ -12,10 +15,11 @@ export class GroupRuleController {
     
     constructor(private readonly httpService: HttpService) {}
 
-    
-  /*@ApiCreatedResponse({
-    type: GroupRule, // aqui definimos o tipo de resposta
-  })*/
+   
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultGroupRuleDto, // aqui definimos o tipo de resposta
+  })
    
   @UseGuards(AccessTokenGuard)
   @Post()
@@ -30,9 +34,10 @@ export class GroupRuleController {
     //return await  this.groupRule.create(createGroupRuleDto);
   }
 
-  /*@ApiCreatedResponse({
-    type: GroupRule, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultGroupRuleDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
   async findAll() {
@@ -43,9 +48,10 @@ export class GroupRuleController {
     //return await  this.groupRule.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: GroupRule, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultGroupRuleDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -56,9 +62,10 @@ export class GroupRuleController {
     //return await  this.groupRule.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atulizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateGroupRuleDto: UpdateGroupRuleDto) {
@@ -70,9 +77,10 @@ export class GroupRuleController {
     //return await  this.groupRule.update(+id, updateGroupRuleDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  }) */
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -83,5 +91,22 @@ export class GroupRuleController {
 
     //return await  this.groupRule.remove(+id);
   }
+
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultGroupRuleDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
+  @Post('list')
+  async list(@Body() ListCriteriaGroupRuleDto: ListCriteriaGroupRuleDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/group-rule/',ListCriteriaGroupRuleDto
+
+    );
+    return result.data
+    //return await this.groupRule.list(ListCriteriaGroupRuleDto);
+  }
+
 
 }

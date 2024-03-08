@@ -1,6 +1,6 @@
 
 ###
-POST  http://localhost:7000/service-user//user-site/ HTTP/1.1
+POST  http://localhost:7000/service-user/user-site/ HTTP/1.1
 content-type: application/json
 
 {

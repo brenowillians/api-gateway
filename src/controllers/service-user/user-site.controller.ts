@@ -1,10 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateUserSiteDto } from 'src/dto/service-user/create-user-site.dto';
 import { UpdateUserSiteDto } from 'src/dto/service-user/update-user-site.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { SigninUserSiteDto } from 'src/dto/service-user/signin-user-site.dto';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultUserSiteDto } from 'src/dto/service-user/result-user-site.dto';
+import { ListResultUserSiteDto } from 'src/dto/service-user/list-result-user-site-dto';
+import { ListCriteriaUserSiteDto } from 'src/dto/service-user/list-criteria-user-site.dto';
 
 
 @ApiTags('UserSite') // Titulo Da Cadeia de Metodos
@@ -14,10 +17,10 @@ export class UserSiteController {
     
     constructor(private readonly httpService: HttpService) {}
 
-  
-  /*@ApiCreatedResponse({
-    type: UserSite, // aqui definimos o tipo de resposta
-  })*/ 
+    @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserSiteDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Post()
   async create(@Body() createUserSiteDto: CreateUserSiteDto) {
@@ -31,9 +34,10 @@ export class UserSiteController {
     //return await this.userSite.create(createUserSiteDto);
   }
 
-  /*@ApiCreatedResponse({
-    type: UserSite, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserSiteDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
   async findAll() {
@@ -43,9 +47,10 @@ export class UserSiteController {
     //return await this.userSite.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: UserSite, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserSiteDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -56,9 +61,10 @@ export class UserSiteController {
     //return await this.userSite.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atulizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserSiteDto: UpdateUserSiteDto) {
@@ -70,9 +76,10 @@ export class UserSiteController {
     //return await this.userSite.update(+id, updateUserSiteDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -82,9 +89,10 @@ export class UserSiteController {
     //return await this.userSite.remove(+id);
   }
 
-  /*@ApiCreatedResponse({
-    type: UserSite, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserSiteDto, // aqui definimos o tipo de resposta
+  }) 
   @Post('signin')
   async signin(@Body() signinUserSiteDto: SigninUserSiteDto) {
     const result= await  this.httpService.axiosRef
@@ -96,5 +104,21 @@ export class UserSiteController {
     //return await this.userSite.signin(signinUserSiteDto);
   }
 
+  
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultUserSiteDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
+  @Post('list')
+  async list(@Body() ListCriteriaUserSiteDto: ListCriteriaUserSiteDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/user-site/',ListCriteriaUserSiteDto
+
+    );
+    return result.data
+    //return await this.userSite.list(ListCriteriaUserSiteDto);
+  }
 
 }

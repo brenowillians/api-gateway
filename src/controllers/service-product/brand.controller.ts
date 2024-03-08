@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateBrandDto } from 'src/dto/service-product/create-brand.dto';
 import { ListCriteriaBrandDto } from 'src/dto/service-product/list-criteria-brand.dto';
 import { UpdateBrandDto } from 'src/dto/service-product/update-brand.dto';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultBrandDto } from 'src/dto/service-product/result-brand.dto';
+import { ListResultBrandDto } from 'src/dto/service-product/list-result-brand-dto';
 
 
 @ApiTags('Brand')
@@ -13,9 +15,10 @@ export class BrandController {
     constructor(private readonly httpService: HttpService) {}
  
 
-/*  @ApiCreatedResponse({
-    type: Brand, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultBrandDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard)
   @Post()
   async create(@Body() createBrandDto: CreateBrandDto) {
@@ -30,9 +33,10 @@ export class BrandController {
   }
 
 
-  /*@ApiCreatedResponse({
-    type: Brand, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: [ResultBrandDto], // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
    async findAll() {
@@ -42,21 +46,24 @@ export class BrandController {
     //return await this.brand.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: Brand, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultBrandDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
     
     const result= await  this.httpService.axiosRef
     .get(process.env.SERVICE_PRODUCT_URL + '/brand/' + id);
-    //return await result.datareturn this.brand.findOne(+id);
+    return await result.data
+    //return this.brand.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atualizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
@@ -69,9 +76,10 @@ export class BrandController {
     //return await this.brand.update(+id, updateBrandDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  })
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -81,10 +89,11 @@ export class BrandController {
     //return await this.brand.remove(+id);
   }
 
-  /*@ApiCreatedResponse({
-    type: Brand, // aqui definimos o tipo de resposta
-  })*/ 
-  
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultBrandDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
   @Post('list')
   async list(@Body() listCriteriaBrandDto: ListCriteriaBrandDto) {
     const result= await  this.httpService.axiosRef

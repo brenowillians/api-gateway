@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateProductSizeDto } from 'src/dto/service-product/create-product_size.dto';
 import { ListCriteriaProduct_sizeDto } from 'src/dto/service-product/list-criteria-product_size.dto';
 import { UpdateProductSizeDto } from 'src/dto/service-product/update-product_size.dto';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultProductSizeDto } from 'src/dto/service-product/result-product_size.dto';
+import { ListResultProductSizeDto } from 'src/dto/service-product/list-result-product_size-dto';
 
 @ApiTags('ProductSize')
 @Controller('service-product/product-size')
@@ -14,10 +16,10 @@ export class ProductSizeController {
     constructor(private readonly httpService: HttpService) {}
 
  
-  
- /* @ApiCreatedResponse({
-    type: ProductSize, // aqui definimos o tipo de resposta
-  })*/
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultProductSizeDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard)  
   @Post()
   async create(@Body() createProductSizeDto: CreateProductSizeDto) {
@@ -29,10 +31,10 @@ export class ProductSizeController {
     return result.data
     //return await this.productSize.create(createProductSizeDto);
   }
-/*
+  @ApiBearerAuth()
   @ApiCreatedResponse({
-    type: ProductSize, // aqui definimos o tipo de resposta
-  })*/
+    type: ResultProductSizeDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard)  
   @Get()
   async findAll() {
@@ -41,21 +43,22 @@ export class ProductSizeController {
     return result.data
     //return await this.productSize.findAll();
   }
-/*
+  @ApiBearerAuth()
   @ApiCreatedResponse({
-    type: ProductSize, // aqui definimos o tipo de resposta
-  })*/
+    type: ResultProductSizeDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard)  
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const result= await  this.httpService.axiosRef
     .get(process.env.SERVICE_PRODUCT_URL + '/product-size/' + id);
+    return await result.data
     // return await this.productSize.findOne(+id);
   }
-/*
+  @ApiBearerAuth()
   @ApiCreatedResponse({
     description: "Registro atualizado", // aqui definimos o tipo de resposta
-  })*/
+  })
   @UseGuards(AccessTokenGuard)  
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateProductSizeDto: UpdateProductSizeDto) {
@@ -66,10 +69,10 @@ export class ProductSizeController {
     return result.data
     // return await this.productSize.update(+id, updateProductSizeDto);
   }
-/*
+  @ApiBearerAuth()
   @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/
+  })
   @UseGuards(AccessTokenGuard)  
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -78,10 +81,11 @@ export class ProductSizeController {
     return result.data
     // return await this.productSize.remove(+id);
   }
-/*
+  @ApiBearerAuth()
   @ApiCreatedResponse({
-    type: ProductSize, // aqui definimos o tipo de resposta
-  })*/ 
+    type: ListResultProductSizeDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
   @Post('list')
   async list(@Body() listCriteriaproductSizeDto: ListCriteriaProduct_sizeDto) {
     const result= await  this.httpService.axiosRef

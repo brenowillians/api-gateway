@@ -1,10 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateStaffDto } from 'src/dto/service-user/create-staff.dto';
 import { UpdateStaffDto } from 'src/dto/service-user/update-staff.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { SigninStaffDto } from 'src/dto/service-user/signin-staff.dto';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultStaffDto } from 'src/dto/service-user/result-staff.dto';
+import { ListResultStaffDto } from 'src/dto/service-user/list-result-staff-dto';
+import { ListCriteriaStaffDto } from 'src/dto/service-user/list-criteria-staff.dto';
 
 
 
@@ -15,9 +18,10 @@ export class StaffController {
     
     constructor(private readonly httpService: HttpService) {}
   
-  /*@ApiCreatedResponse({
-    type: Staff, // aqui definimos o tipo de resposta
-  })*/ 
+    @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Post()
   async create(@Body() createStaffDto: CreateStaffDto) {
@@ -31,9 +35,10 @@ export class StaffController {
     //returnawait  this.staff.create(createStaffDto);
   }
 
-  /*@ApiCreatedResponse({
-    type: Staff, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
   async findAll() {
@@ -44,9 +49,10 @@ export class StaffController {
     //return await  this.staff.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: Staff, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -56,9 +62,10 @@ export class StaffController {
     //return await this.staff.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atualizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateStaffDto: UpdateStaffDto) {
@@ -70,9 +77,10 @@ export class StaffController {
    // return await this.staff.update(+id, updateStaffDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -82,10 +90,10 @@ export class StaffController {
     //return await this.staff.remove(+id);
   }
 
-
-  /*@ApiCreatedResponse({
-    type: Staff, // aqui definimos o tipo de resposta
-  })*/ 
+  
+  @ApiCreatedResponse({
+    type: ResultStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @Post('signin')
   async signin(@Body() signinStaffDto: SigninStaffDto) {
     const result= await  this.httpService.axiosRef
@@ -96,6 +104,23 @@ export class StaffController {
     return result.data
     
     //return await this.staff.signin(signinStaffDto);
+  }
+
+  
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultStaffDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
+  @Post('list')
+  async list(@Body() ListCriteriaStaffDto: ListCriteriaStaffDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/staff/',ListCriteriaStaffDto
+
+    );
+    return result.data
+    //return await this.staff.list(ListCriteriaStaffDto);
   }
 
 }

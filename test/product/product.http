@@ -1,0 +1,38 @@
+
+###
+POST  http://localhost:7000/service-product/product/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+content-type: application/json
+
+{
+    "name": "teste",
+    "createdId": 8,
+    "image":"camisa.png",
+    "fullPrice":50,
+    "description":"camisa nike",
+    "idBrand":1,
+    "idCategory":1
+}
+
+
+###
+GET  http://localhost:7000/service-product/product/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+
+###
+GET  http://localhost:7000/service-product/product/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+
+###
+PATCH  http://localhost:7000/service-product/product/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+content-type: application/json
+
+{
+   "name": "camisa"
+    
+}
+
+###
+DELETE  http://localhost:7000/service-product/product/5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4

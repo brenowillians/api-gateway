@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateCategoryDto } from 'src/dto/service-product/create-category.dto';
 import { ListCriteriaCategoryDto } from 'src/dto/service-product/list-criteria-category.dto';
 import { UpdateCategoryDto } from 'src/dto/service-product/update-category.dto';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultCategoryDto } from 'src/dto/service-product/result-category.dto';
+import { ListResultCategoryDto } from 'src/dto/service-product/list-result-category-dto';
 
 @ApiTags('Category')
 @Controller('service-product/category')
@@ -12,10 +14,10 @@ export class CategoryController {
     
     constructor(private readonly httpService: HttpService) {}
 
-    
-  /*@ApiCreatedResponse({
-    type: Category, // aqui definimos o tipo de resposta
-  })*/
+  @ApiBearerAuth() 
+  @ApiCreatedResponse({
+    type: ResultCategoryDto, // aqui definimos o tipo de resposta
+  })
   @UseGuards(AccessTokenGuard) 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -27,10 +29,10 @@ export class CategoryController {
     return result.data
     // return await this.category.create(createCategoryDto);
   }
-
-  /*@ApiCreatedResponse({
-    type: Category, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultCategoryDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
   async findAll() {
@@ -39,21 +41,22 @@ export class CategoryController {
     return result.data
     //return await this.category.findAll();
   }
-
-  /*@ApiCreatedResponse({
-    type: Category, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultCategoryDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const result= await  this.httpService.axiosRef
     .get(process.env.SERVICE_PRODUCT_URL + '/category/' + id);
+    return await result.data
     // return await  this.category.findOne(+id);
   }
-
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atualizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
@@ -64,10 +67,10 @@ export class CategoryController {
     return result.data
     //return await this.category.update(+id, updateCategoryDto);
   }
-
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -76,10 +79,11 @@ export class CategoryController {
     return result.data
    // return await this.category.remove(+id);
   }
-
-  /*@ApiCreatedResponse({
-    type: Category, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultCategoryDto, // aqui definimos o tipo de resposta
+  }) 
+  @UseGuards(AccessTokenGuard)
   @Post('list')
   async list(@Body() listCriteriacategoryDto: ListCriteriaCategoryDto) {
     const result= await  this.httpService.axiosRef

@@ -1,9 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateUserAddressDto } from 'src/dto/service-user/create-user-address.dto';
 import { UpdateUserAddressDto } from 'src/dto/service-user/update-user-address.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultUserAddressDto } from 'src/dto/service-user/result-user-address.dto';
+import { ListResultUserAddressDto } from 'src/dto/service-user/list-result-user-address-dto';
+import { ListCriteriaUserAddressDto } from 'src/dto/service-user/list-criteria-user-address.dto';
 
 
 @ApiTags('UserAddress') // Titulo Da Cadeia de Metodos
@@ -13,10 +16,10 @@ export class UserAddressController {
     
     constructor(private readonly httpService: HttpService) {}
 
-  
-  /*@ApiCreatedResponse({
-    type: UserAddress, // aqui definimos o tipo de resposta
-  })*/ 
+    @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserAddressDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Post()
   async create(@Body() createUserAddressDto: CreateUserAddressDto) {
@@ -30,9 +33,10 @@ export class UserAddressController {
     //return await this.userAddress.create(createUserAddressDto);
   }
 
-  /*@ApiCreatedResponse({
-    type: UserAddress, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserAddressDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get()
   async findAll() {
@@ -42,9 +46,10 @@ export class UserAddressController {
     //return await this.userAddress.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: UserAddress, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultUserAddressDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -54,9 +59,10 @@ export class UserAddressController {
     //return await this.userAddress.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atulizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserAddressDto: UpdateUserAddressDto) {
@@ -69,9 +75,10 @@ export class UserAddressController {
     //return await this.userAddress.update(+id, updateUserAddressDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -82,5 +89,21 @@ export class UserAddressController {
     //return await this.userAddress.remove(+id);
   }
 
+  
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultUserAddressDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
+  @Post('list')
+  async list(@Body() ListCriteriaUserAddressDto: ListCriteriaUserAddressDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/user-address/',ListCriteriaUserAddressDto
+
+    );
+    return result.data
+    //return await this.userAddress.list(ListCriteriaUserAddressDto);
+  }
 
 }

@@ -1,9 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateGroupStaffDto } from 'src/dto/service-user/create-group-staff.dto';
 import { UpdateGroupStaffDto } from 'src/dto/service-user/update-group-staff.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
+import { ResultGroupStaffDto } from 'src/dto/service-user/result-group-staff.dto';
+import { ListResultGroupStaffDto } from 'src/dto/service-user/list-result-group-staff-dto';
+import { ListCriteriaGroupStaffDto } from 'src/dto/service-user/list-criteria-group-staff.dto';
 
 
 
@@ -14,10 +17,10 @@ export class GroupStaffController {
     
     constructor(private readonly httpService: HttpService) {}
 
-    
-  /*@ApiCreatedResponse({
-    type: GroupStaff, // aqui definimos o tipo de resposta
-  })*/ 
+    @ApiBearerAuth()    
+  @ApiCreatedResponse({
+    type: ResultGroupStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Post()
   async create(@Body() createGroupStaffDto: CreateGroupStaffDto) {
@@ -31,9 +34,10 @@ export class GroupStaffController {
   }*/
 }
 
-  /*@ApiCreatedResponse({
-    type: GroupStaff, // aqui definimos o tipo de resposta
-  })*/ 
+@ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultGroupStaffDto, // aqui definimos o tipo de resposta
+  }) 
 
   @UseGuards(AccessTokenGuard)
   @Get()
@@ -45,9 +49,10 @@ export class GroupStaffController {
     //return await this.groupStaff.findAll();
   }
 
-  /*@ApiCreatedResponse({
-    type: GroupStaff, // aqui definimos o tipo de resposta
-  })*/ 
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ResultGroupStaffDto, // aqui definimos o tipo de resposta
+  }) 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
@@ -58,9 +63,10 @@ export class GroupStaffController {
     //return await this.groupStaff.findOne(+id);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro atulizado", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateGroupStaffDto: UpdateGroupStaffDto) {
@@ -73,9 +79,10 @@ export class GroupStaffController {
     //return await this.groupStaff.update(+id, updateClienteDto);
   }
 
-  /*@ApiCreatedResponse({
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
     description: "Registro excluido", // aqui definimos o tipo de resposta
-  })*/ 
+  }) 
   @UseGuards(AccessTokenGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
@@ -83,6 +90,23 @@ export class GroupStaffController {
       .delete(process.env.SERVICE_USER_URL + '/group-staff/' + id);
       return result.data
     //return await this.groupStaff.remove(+id);
+  }
+
+  
+  @ApiBearerAuth()
+  @ApiCreatedResponse({
+    type: ListResultGroupStaffDto, // aqui definimos o tipo de resposta
+  })
+  @UseGuards(AccessTokenGuard)
+  @Post('list')
+  async list(@Body() ListCriteriaGroupStaffDto: ListCriteriaGroupStaffDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/group-staff/',ListCriteriaGroupStaffDto
+
+    );
+    return result.data
+    //return await this.groupStaff.list(ListCriteriaGroupStaffDto);
   }
 
 

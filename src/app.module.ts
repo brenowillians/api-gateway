@@ -11,6 +11,11 @@ import { UserAddressController } from './controllers/service-user/user-address.c
 import { UserSiteController } from './controllers/service-user/user-site.controller';
 import { AccessTokenStrategy } from './services/strategies/accessToken.strategy';
 import { RefreshTokenStrategy } from './services/strategies/refreshToken.strategy';
+import { BrandController } from './controllers/service-product/brand.controller';
+import { CategoryController } from './controllers/service-product/category.controller';
+import { ProductSizeController } from './controllers/service-product/product_size.controller';
+import { ProductController } from './controllers/service-product/product.controller';
+import { SizeController } from './controllers/service-product/size.controller';
 
 
 
@@ -30,7 +35,12 @@ import { RefreshTokenStrategy } from './services/strategies/refreshToken.strateg
     RuleController,
     StaffController,
     UserAddressController,
-    UserSiteController
+    UserSiteController,
+    BrandController,
+    CategoryController,
+    ProductSizeController,
+    ProductController,
+    SizeController
   ],
   providers: [
     AccessTokenStrategy, 
