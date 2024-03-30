@@ -100,7 +100,7 @@ export class RuleController {
   async list(@Body() ListCriteriaRuleDto: ListCriteriaRuleDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/rule/',ListCriteriaRuleDto
+        process.env.SERVICE_USER_URL + '/rule/list',ListCriteriaRuleDto
 
     );
     return result.data

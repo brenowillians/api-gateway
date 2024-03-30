@@ -116,7 +116,7 @@ export class StaffController {
   async list(@Body() ListCriteriaStaffDto: ListCriteriaStaffDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/staff/',ListCriteriaStaffDto
+        process.env.SERVICE_USER_URL + '/staff/list/',ListCriteriaStaffDto
 
     );
     return result.data

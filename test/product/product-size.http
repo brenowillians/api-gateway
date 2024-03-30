@@ -13,7 +13,7 @@ content-type: application/json
 
 ###
 GET  http://localhost:7000/service-product/product-size/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzExNTAxNjA3LCJleHAiOjE3MTE1MDUyMDd9.7VRLZCAlgqPw_S0FB-JhG2Doy7PXRUL00E0DcJqxzG4
 
 ###
 GET  http://localhost:7000/service-product/product-size/3 HTTP/1.1

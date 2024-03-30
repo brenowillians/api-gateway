@@ -101,7 +101,7 @@ export class GroupRuleController {
   async list(@Body() ListCriteriaGroupRuleDto: ListCriteriaGroupRuleDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/group-rule/',ListCriteriaGroupRuleDto
+        process.env.SERVICE_USER_URL + '/group-rule/list',ListCriteriaGroupRuleDto
 
     );
     return result.data

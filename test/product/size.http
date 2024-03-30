@@ -12,19 +12,18 @@ content-type: application/json
 
 ###
 GET  http://localhost:7000/service-product/size/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzExNDk2NDY5LCJleHAiOjE3MTE1MDAwNjl9.VSj6yMT3rTy9SadKZpk-FONMU3Uj_I5q_JbAKegqGec
 ###
 GET  http://localhost:7000/service-product/size/3 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
 
 ###
-PATCH  http://localhost:7000/service-product/size/3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+PATCH  http://localhost:7000/service-product/size/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzExNDk2NDY5LCJleHAiOjE3MTE1MDAwNjl9.VSj6yMT3rTy9SadKZpk-FONMU3Uj_I5q_JbAKegqGec
 content-type: application/json
 
 {
-   "name": "Nike"
+   "name": "Tamanho P"
     
 }
 

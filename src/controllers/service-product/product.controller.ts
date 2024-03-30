@@ -91,7 +91,7 @@ export class ProductController {
   async list(@Body() listCriteriaproductDto: ListCriteriaProductDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_PRODUCT_URL + '/product/',listCriteriaproductDto
+        process.env.SERVICE_PRODUCT_URL + '/product/list',listCriteriaproductDto
 
     );
     return result.data

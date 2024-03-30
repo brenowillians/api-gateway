@@ -114,7 +114,7 @@ export class UserSiteController {
   async list(@Body() ListCriteriaUserSiteDto: ListCriteriaUserSiteDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/user-site/',ListCriteriaUserSiteDto
+        process.env.SERVICE_USER_URL + '/user-site/list',ListCriteriaUserSiteDto
 
     );
     return result.data

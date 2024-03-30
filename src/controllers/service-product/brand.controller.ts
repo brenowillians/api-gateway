@@ -98,7 +98,7 @@ export class BrandController {
   async list(@Body() listCriteriaBrandDto: ListCriteriaBrandDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_PRODUCT_URL + '/brand/',listCriteriaBrandDto
+        process.env.SERVICE_PRODUCT_URL + '/brand/list/',listCriteriaBrandDto
 
     );
     return result.data

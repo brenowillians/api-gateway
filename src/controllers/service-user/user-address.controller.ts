@@ -99,7 +99,7 @@ export class UserAddressController {
   async list(@Body() ListCriteriaUserAddressDto: ListCriteriaUserAddressDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/user-address/',ListCriteriaUserAddressDto
+        process.env.SERVICE_USER_URL + '/user-address/list',ListCriteriaUserAddressDto
 
     );
     return result.data

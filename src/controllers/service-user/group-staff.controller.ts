@@ -102,7 +102,7 @@ export class GroupStaffController {
   async list(@Body() ListCriteriaGroupStaffDto: ListCriteriaGroupStaffDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/group-staff/',ListCriteriaGroupStaffDto
+        process.env.SERVICE_USER_URL + '/group-staff/list',ListCriteriaGroupStaffDto
 
     );
     return result.data

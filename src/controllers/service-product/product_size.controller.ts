@@ -90,7 +90,7 @@ export class ProductSizeController {
   async list(@Body() listCriteriaproductSizeDto: ListCriteriaProduct_sizeDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_PRODUCT_URL + '/product-size/',listCriteriaproductSizeDto
+        process.env.SERVICE_PRODUCT_URL + '/product-size/list',listCriteriaproductSizeDto
 
     );
     return result.data

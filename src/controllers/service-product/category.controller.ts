@@ -88,7 +88,7 @@ export class CategoryController {
   async list(@Body() listCriteriacategoryDto: ListCriteriaCategoryDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_PRODUCT_URL + '/category/',listCriteriacategoryDto
+        process.env.SERVICE_PRODUCT_URL + '/category/list',listCriteriacategoryDto
 
     );
     return result.data

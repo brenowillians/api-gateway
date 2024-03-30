@@ -96,7 +96,7 @@ export class AddressTypeController {
   async list(@Body() ListCriteriaAddressTypeDto: ListCriteriaAddressTypeDto) {
     const result= await  this.httpService.axiosRef
     .post(
-        process.env.SERVICE_USER_URL + '/address-type/',ListCriteriaAddressTypeDto
+        process.env.SERVICE_USER_URL + '/address-type/list',ListCriteriaAddressTypeDto
 
     );
     return result.data
