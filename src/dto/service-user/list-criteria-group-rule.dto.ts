@@ -4,17 +4,13 @@ import { IsBoolean, IsInt, IsNotEmpty, IsOptional } from "class-validator";
 export class ListCriteriaGroupRuleDto {
     
     @ApiProperty()
-    @IsNotEmpty()
+    @IsOptional()
     idGroup: number;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    idRule: number;
-    
+
     @ApiProperty()
     @IsOptional()
-    @IsBoolean()
-    isAllowed: boolean;
+    idRule: number;
 
     @ApiProperty()
     @IsNotEmpty()

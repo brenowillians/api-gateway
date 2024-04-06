@@ -43,3 +43,10 @@ content-type: application/json
     "password": "123456"
 
 }
+
+###
+POST  http://localhost:7000/service-user/staff/list HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEyMjc4NjQ1LCJleHAiOjE3MTIyODIyNDV9.3LaCYqoMsXLG6_RacuAgzoLGWwKVBGKIJlONFJwGsP0
+content-type: application/json
+
+{"name":"","items":10,"page":1,"order":{"name":"ASC"}}

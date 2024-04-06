@@ -4,7 +4,7 @@ import { IsBoolean, IsInt, IsNotEmpty, IsOptional } from "class-validator";
 export class ListCriteriaRuleDto {
     
     @ApiProperty()
-    @IsNotEmpty()
+    @IsOptional()
     description: string ;
 
     @ApiProperty()

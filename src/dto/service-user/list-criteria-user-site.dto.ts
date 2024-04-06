@@ -4,26 +4,13 @@ import { IsBoolean, IsInt, IsNotEmpty, IsOptional } from "class-validator";
 export class ListCriteriaUserSiteDto {
     
     @ApiProperty()
-    @IsNotEmpty()
+    @IsOptional()
     login: string ;
 
     @ApiProperty()
-    @IsNotEmpty()
-    password: string ;
-  
-    @ApiProperty()
     @IsOptional()
-    @IsBoolean()
-    locked: boolean | null;
-
-    @ApiProperty()
-    @IsNotEmpty()
     name: string ;
 
-    @ApiProperty()
-    @IsOptional()
-    birthday: string | null;
-  
     @ApiProperty()
     @IsOptional()
     gender: string | null;
@@ -38,12 +25,8 @@ export class ListCriteriaUserSiteDto {
 
     @ApiProperty()
     @IsOptional()
-    id_number: string | null;
-
-    @ApiProperty()
-    @IsNotEmpty()
     cpf: string | null;
-   
+    
     @ApiProperty()
     @IsNotEmpty()
     @IsInt()
