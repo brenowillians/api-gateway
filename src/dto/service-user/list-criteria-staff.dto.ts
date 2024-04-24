@@ -12,6 +12,11 @@ export class ListCriteriaStaffDto {
     login: string;
 
     @ApiProperty()
+    @IsOptional()
+    @IsBoolean()
+    active: boolean;
+
+    @ApiProperty()
     @IsNotEmpty()
     @IsInt()
     items: number;

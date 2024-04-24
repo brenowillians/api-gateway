@@ -46,7 +46,7 @@ content-type: application/json
 
 ###
 POST  http://localhost:7000/service-user/staff/list HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEyMjc4NjQ1LCJleHAiOjE3MTIyODIyNDV9.3LaCYqoMsXLG6_RacuAgzoLGWwKVBGKIJlONFJwGsP0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEzMzA4MDQyLCJleHAiOjE3MTMzMTE2NDJ9.gyfePigJKqkCxjEW4QVaI1ilQbRKcRoH2WTRNICYCwg
 content-type: application/json
 
-{"name":"","items":10,"page":1,"order":{"name":"ASC"}}
+{"active":false,"items":10,"page":1,"order":{"name":"ASC"}}

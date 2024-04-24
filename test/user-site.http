@@ -14,6 +14,7 @@ content-type: application/json
 
 ###
 GET  http://localhost:7000/service-user/user-site/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEzOTEyMTg5LCJleHAiOjE3MTM5MTU3ODl9.skCF2hCkegTIsPg0SJyEHnI4Fdl5CsHbJ9uIXtGD8Ds
 
 ###
 GET  http://localhost:7000/service-user/user-site/2 HTTP/1.1

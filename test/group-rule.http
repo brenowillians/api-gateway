@@ -11,6 +11,7 @@ content-type: application/json
 
 ###
 GET  http://localhost:7000/service-user/group-rule/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEyNzA2NTMxLCJleHAiOjE3MTI3MTAxMzF9.M3GH5bwxACeXxZxa95JqT-gF_LgJHhN9OIam0d4HhQg
 
 ###
 GET  http://localhost:7000/service-user/group-rule/2 HTTP/1.1
