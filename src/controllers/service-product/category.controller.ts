@@ -41,11 +41,18 @@ export class CategoryController {
     return result.data
     //return await this.category.findAll();
   }
-  @ApiBearerAuth()
+
+  @Get('active')
+  async findAllActive() {
+    const result= await  this.httpService.axiosRef
+    .get(process.env.SERVICE_PRODUCT_URL + '/category/active');
+    return await result.data
+  }
+
   @ApiCreatedResponse({
     type: ResultCategoryDto, // aqui definimos o tipo de resposta
   }) 
-  @UseGuards(AccessTokenGuard)
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const result= await  this.httpService.axiosRef
@@ -53,6 +60,8 @@ export class CategoryController {
     return await result.data
     // return await  this.category.findOne(+id);
   }
+
+
   @ApiBearerAuth()
   @ApiCreatedResponse({
     description: "Registro atualizado", // aqui definimos o tipo de resposta

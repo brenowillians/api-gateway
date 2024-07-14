@@ -44,3 +44,7 @@ content-type: application/json
     "page": 1,
     "order": { "name": "ASC", "createdDate": "DESC"}
 }
+
+
+###
+GET  http://localhost:7000/service-product/brand/active/ HTTP/1.1

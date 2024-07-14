@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { CreateStaffDto } from 'src/dto/service-user/create-staff.dto';
 import { UpdateStaffDto } from 'src/dto/service-user/update-staff.dto';
 import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
@@ -8,6 +8,8 @@ import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
 import { ResultStaffDto } from 'src/dto/service-user/result-staff.dto';
 import { ListResultStaffDto } from 'src/dto/service-user/list-result-staff-dto';
 import { ListCriteriaStaffDto } from 'src/dto/service-user/list-criteria-staff.dto';
+import { RefreshTokenGuard } from 'src/services/guards/refreshToken.guard';
+import { Request } from 'express';
 
 
 
@@ -34,6 +36,17 @@ export class StaffController {
     
     //returnawait  this.staff.create(createStaffDto);
   }
+    @UseGuards(RefreshTokenGuard)
+    @Get('refresh/')
+    async refresh(@Req() req: Request) {
+      console.log(req.user['idUser'])
+      const userId = req.user['idUser'];
+      const result= await  this.httpService.axiosRef
+      .get(process.env.SERVICE_USER_URL + '/staff/refresh/' + userId);
+      return result.data
+      //return await this.staff.findOne(+id);
+    }
+  
 
   @ApiBearerAuth()
   @ApiCreatedResponse({
@@ -122,5 +135,6 @@ export class StaffController {
     return result.data
     //return await this.staff.list(ListCriteriaStaffDto);
   }
+
 
 }

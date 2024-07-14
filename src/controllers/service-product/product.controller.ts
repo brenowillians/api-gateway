@@ -7,6 +7,7 @@ import { HttpService } from '@nestjs/axios';
 import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
 import { ResultProductDto } from 'src/dto/service-product/result-product.dto';
 import { ListResultProductDto } from 'src/dto/service-product/list-result-product-dto';
+import { ListCriteriaProductByCategoryDto } from 'src/dto/service-product/list-criteria-product-by-category.dto';
 
 @ApiTags('Product')
 @Controller('service-product/product')
@@ -42,12 +43,15 @@ export class ProductController {
     .get(process.env.SERVICE_PRODUCT_URL + '/product');
     return result.data
     // return await this.product.findAll();
+
+
+    
   }
-  @ApiBearerAuth()
+  //@ApiBearerAuth()
   @ApiCreatedResponse({
     type: ResultProductDto, // aqui definimos o tipo de resposta
   })
-  @UseGuards(AccessTokenGuard)  
+  //@UseGuards(AccessTokenGuard)  
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const result= await  this.httpService.axiosRef
@@ -98,4 +102,14 @@ export class ProductController {
    // return await this.product.list(listCriteriaproductDto);
   }
 
+  @Post('list-by-category')
+  async listByCategory(@Body() listCriteriaProductByCategoryDto: ListCriteriaProductByCategoryDto) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_PRODUCT_URL + '/product/list-by-category',listCriteriaProductByCategoryDto
+
+    );
+    return result.data
+   // return await this.product.list(listCriteriaproductDto);
+  }
 }

@@ -18,7 +18,8 @@ content-type: application/json
 GET  http://localhost:7000/service-user/staff/ HTTP/1.1
 
 ###
-GET  http://localhost:7000/service-user/staff/2 HTTP/1.1
+GET  http://localhost:7000/service-user/staff/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6NCwiaWF0IjoxNzE0NjkzODM5LCJleHAiOjE3MTQ2OTc0Mzl9.yJbV_pgtuFxk4oxX09pTd9uC9MEdB73QRlGNarXPYCA
 
 ###
 PATCH  http://localhost:7000/service-user/staff/8 HTTP/1.1
@@ -39,14 +40,19 @@ POST  http://localhost:7000/service-user/staff/signin/ HTTP/1.1
 content-type: application/json
 
 {
-    "login": "breno",
+    "login": "murilo",
     "password": "123456"
 
 }
 
 ###
 POST  http://localhost:7000/service-user/staff/list HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEzMzA4MDQyLCJleHAiOjE3MTMzMTE2NDJ9.gyfePigJKqkCxjEW4QVaI1ilQbRKcRoH2WTRNICYCwg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6NCwiaWF0IjoxNzE0NjkzNDA2LCJleHAiOjE3MTQ3MDQyMDZ9.g7PEt2pBbcknIGU0VoGFYdYY9gnAF5D-_75d8tBwMr0
 content-type: application/json
 
-{"active":false,"items":10,"page":1,"order":{"name":"ASC"}}
+{"items":10,"page":1,"order":{"name":"ASC"}}
+
+
+###
+GET  http://localhost:7000/service-user/staff/refresh HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6NCwiaWF0IjoxNzE0NjkzNTMzLCJleHAiOjE3MTQ3MDQzMzN9.Umqfz6hZXddWwPCpwUBduBoA6WQnFggVJnNDkWJLwYY

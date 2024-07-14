@@ -31,3 +31,7 @@ content-type: application/json
 ###
 DELETE  http://localhost:7000/service-product/category/5 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzA5MDY5MjMwLCJleHAiOjE3MDkwNzI4MzB9.hYWd3GrKuM8fp_9FXTlpAdSAibYMHF6SdXnTgVSfot4
+
+
+###
+GET  http://localhost:7000/service-product/category/active/ HTTP/1.1

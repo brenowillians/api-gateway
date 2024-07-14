@@ -46,6 +46,14 @@ export class BrandController {
     //return await this.brand.findAll();
   }
 
+  
+  @Get('active')
+  async findAllActive() {
+    const result= await  this.httpService.axiosRef
+    .get(process.env.SERVICE_PRODUCT_URL + '/brand/active');
+    return await result.data
+  }
+
   @ApiBearerAuth()
   @ApiCreatedResponse({
     type: ResultBrandDto, // aqui definimos o tipo de resposta

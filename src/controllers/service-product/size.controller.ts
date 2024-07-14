@@ -42,6 +42,15 @@ export class SizeController {
     return result.data
     // return await  this.size.findAll();
   }
+
+
+  @Get('active')
+  async findAllActive() {
+    const result= await  this.httpService.axiosRef
+    .get(process.env.SERVICE_PRODUCT_URL + '/size/active');
+    return await result.data
+  }
+
   @ApiBearerAuth()
   @ApiCreatedResponse({
     type: ResultSizeDto, // aqui definimos o tipo de resposta
