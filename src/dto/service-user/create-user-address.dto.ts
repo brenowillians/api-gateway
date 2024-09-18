@@ -5,7 +5,7 @@ import {IsBoolean, IsNotEmpty, IsNumber, IsOptional, MaxLength } from 'class-val
  
     @ApiProperty()
     @IsNotEmpty({message:"CAMPO IDUSER OBRIGATÓRIO"})
-    idUser: number;
+    idUserSite: number;
 
     @ApiProperty()
     @IsNotEmpty({message:"CAMPO STREET OBRIGATÓRIO"})
@@ -34,6 +34,11 @@ import {IsBoolean, IsNotEmpty, IsNumber, IsOptional, MaxLength } from 'class-val
     @ApiProperty()
     @IsNotEmpty({message:"CAMPO IDADDRESSTYPE OBRIGATÓRIO"})
     idAddressType: number;
+
+    @ApiProperty()
+    @IsOptional()
+    primary: number
+
 
   }
 

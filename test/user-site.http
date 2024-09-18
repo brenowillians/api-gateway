@@ -14,17 +14,19 @@ content-type: application/json
 
 ###
 GET  http://localhost:7000/service-user/user-site/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJzdGFmZiIsImlkVXNlciI6MSwiaWF0IjoxNzEzOTEyMTg5LCJleHAiOjE3MTM5MTU3ODl9.skCF2hCkegTIsPg0SJyEHnI4Fdl5CsHbJ9uIXtGD8Ds
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjY2MTExNDksImV4cCI6MTcyNjYxNDc0OX0.j1u-N1VxtFnhsnQZiQhiPwPAwS6mJo6shpyYoEpwEZA
 
 ###
 GET  http://localhost:7000/service-user/user-site/2 HTTP/1.1
 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjE3NzQ1MjUsImV4cCI6MTcyMTc3ODEyNX0.uv38WG2GazlkAKrwSHmfwdoVcxZFxJvWQw5-sDVr-ZE
 ###
-PATCH  http://localhost:7000/service-user/user-site/5 HTTP/1.1
+PATCH  http://localhost:7000/service-user/user-site/2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjY2MTExNDksImV4cCI6MTcyNjYxNDc0OX0.j1u-N1VxtFnhsnQZiQhiPwPAwS6mJo6shpyYoEpwEZA
 content-type: application/json
 
 {
-    "login": "fabio"
+    "login": "bwillians.fla@gmail.com"
     
 }
 
@@ -36,6 +38,15 @@ POST  http://localhost:7000/service-user/user-site/signin HTTP/1.1
 content-type: application/json
 
 {
-    "login": "fabio",
-    "password": "123456"
+    "login": "bwillians.fla@gmail.com",
+    "password": "275467"
+}
+
+
+###
+POST  http://localhost:7000/service-user/user-site/get-code HTTP/1.1
+content-type: application/json
+
+{
+    "login": "bwillians.fla@gmail.com"
 }

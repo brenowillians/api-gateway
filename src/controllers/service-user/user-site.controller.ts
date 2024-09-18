@@ -8,6 +8,7 @@ import { AccessTokenGuard } from 'src/services/guards/accessToken.guard';
 import { ResultUserSiteDto } from 'src/dto/service-user/result-user-site.dto';
 import { ListResultUserSiteDto } from 'src/dto/service-user/list-result-user-site-dto';
 import { ListCriteriaUserSiteDto } from 'src/dto/service-user/list-criteria-user-site.dto';
+import { SendMailDTO } from 'src/dto/service-user/send-mail.dto'
 
 
 @ApiTags('UserSite') // Titulo Da Cadeia de Metodos
@@ -104,6 +105,16 @@ export class UserSiteController {
     //return await this.userSite.signin(signinUserSiteDto);
   }
 
+  @Post('get-code')
+  async getCode(@Body() sendMailDTO: SendMailDTO) {
+    const result= await  this.httpService.axiosRef
+    .post(
+        process.env.SERVICE_USER_URL + '/user-site/get-code',sendMailDTO
+
+    );
+    return result.data
+    //return await this.userSite.signin(signinUserSiteDto);
+  }
   
   @ApiBearerAuth()
   @ApiCreatedResponse({
@@ -120,5 +131,16 @@ export class UserSiteController {
     return result.data
     //return await this.userSite.list(ListCriteriaUserSiteDto);
   }
+
+  /*@UseGuards(RefreshTokenGuard)
+  @Get('refresh/')
+  async refresh(@Req() req: Request) {
+    console.log(req.user['idUser'])
+    const userId = req.user['idUser'];
+    const result= await  this.httpService.axiosRef
+    .get(process.env.SERVICE_USER_URL + '/staff/refresh/' + userId);
+    return result.data
+    //return await this.staff.findOne(+id);
+  }*/
 
 }

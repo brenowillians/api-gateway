@@ -1,32 +1,35 @@
 ###
 POST  http://localhost:7000/service-user/user-address/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjI5ODQyNjUsImV4cCI6MTcyMjk4Nzg2NX0.dHy4hyheCW4V6-wYgpxdizfsWWJ___EGXiWGXGSMN6M
 content-type: application/json
 
 {
-    "idUser": 675,
-    "street": "estrada do dendê",
-    "number": 500,
-    "zipCode": 21920000,
+    "idUserSite": 1,
+    "street": "Rua Cambaúba",
+    "number": 520,
+    "zipCode": 21940005,
     "city": "Rio de Janeiro",
     "state": "Rio de Janeiro",
     "country": "Brasil",
-    "idAddressType": 23
+    "idAddressType": 2
 }
 
 ###
 GET  http://localhost:7000/service-user/user-address/ HTTP/1.1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjMxNTc0ODcsImV4cCI6MTcyMzE2MTA4N30.yvBPe3KNrNInU0zkN8C4ukXEidpith9bHcYndU1G7PE
 ###
 GET  http://localhost:7000/service-user/user-address/2 HTTP/1.1
 
 ###
-PATCH  http://localhost:7000/service-user/user-address/2 HTTP/1.1
+PATCH  http://localhost:7000/service-user/user-address/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjI5ODQyNjUsImV4cCI6MTcyMjk4Nzg2NX0.dHy4hyheCW4V6-wYgpxdizfsWWJ___EGXiWGXGSMN6M
 content-type: application/json
 
 {
-    "password": "tyuvhjbu"
+    "state": "RJ"
     
 }
 
 ###
-DELETE  http://localhost:7000/service-user/user-address/2 HTTP/1.1
+DELETE  http://localhost:7000/service-user/user-address/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJ1c2VyIiwiaWRVc2VyIjoxLCJpYXQiOjE3MjE5NDgwMDUsImV4cCI6MTcyMTk1MTYwNX0.fKtkjf5kqeJy7JQPqfmlKS0qvtj-t0RdN4ZtuJPw3p0
