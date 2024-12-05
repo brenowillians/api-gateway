@@ -16,8 +16,11 @@ import { CategoryController } from './controllers/service-product/category.contr
 import { ProductSizeController } from './controllers/service-product/product_size.controller';
 import { ProductController } from './controllers/service-product/product.controller';
 import { SizeController } from './controllers/service-product/size.controller';
-
-
+import { StatusController } from './controllers/service-order/status.controller';
+import { OrderItemController } from './controllers/service-order/order-item.controller';
+import { OrderStatusController } from './controllers/service-order/order-status.controller';
+import { OrderController } from './controllers/service-order/order.controller';
+import { PaymentController } from './controllers/service-order/payment.controller';
 
 @Module({
   imports: [
@@ -28,9 +31,9 @@ import { SizeController } from './controllers/service-product/size.controller';
     HttpModule,
   ],
   controllers: [
-    AddressTypeController, 
-    GroupRuleController, 
-    GroupStaffController, 
+    AddressTypeController,
+    GroupRuleController,
+    GroupStaffController,
     GroupController,
     RuleController,
     StaffController,
@@ -40,11 +43,13 @@ import { SizeController } from './controllers/service-product/size.controller';
     CategoryController,
     ProductSizeController,
     ProductController,
-    SizeController
+    SizeController,
+    OrderController,
+    OrderItemController,
+    OrderStatusController,
+    PaymentController,
+    StatusController,
   ],
-  providers: [
-    AccessTokenStrategy, 
-    RefreshTokenStrategy,
-  ],
+  providers: [AccessTokenStrategy, RefreshTokenStrategy],
 })
 export class AppModule {}
